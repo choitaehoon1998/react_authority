@@ -27,11 +27,11 @@ function MenuAuthGrid() {
       .then((response) => {
         setGridData(response.data);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {});
   }, []);
 
   const columns = [
-    { key: "indexNo", width: 100, label: "권한그룹명", align: "center" },
+    { key: "gradeIndexNo", width: 100, label: "권한그룹명", align: "center" },
     {
       key: "searchAuthority",
       width: 150,
@@ -126,6 +126,7 @@ function MenuAuthGrid() {
         show={changeModalShow}
         onHide={handleChangeModalClose}
         targetData={targetData}
+        setTargetData={setTargetData}
       ></MenuAuthUpdateModal>
 
       <DataGrid
