@@ -5,11 +5,21 @@ import { API_URL } from "../utils/api";
 import axios from "axios";
 import Button from "react-bootstrap/Button";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
+import MenuAuthNewModal from "./MenuAuthNewModal";
+import MenuAuthUpdateModal from "./MenuAuthUpdateModal";
 import "bootstrap/dist/css/bootstrap.css";
 
 function MenuAuthGrid() {
   const [gridData, setGridData] = useState([]);
   const [targetData, setTargetData] = useState({});
+  const [changeModalShow, setChangeModalShow] = useState(false);
+  const [newModalShow, setNewModalShow] = useState(false);
+
+  const handleChangeModalClose = () => setChangeModalShow(false);
+  const handleChangeModalShow = () => setChangeModalShow(true);
+
+  const handleNewModalClose = () => setNewModalShow(false);
+  const handleNewModalShow = () => setNewModalShow(true);
 
   useEffect(() => {
     axios
@@ -84,18 +94,40 @@ function MenuAuthGrid() {
   return (
     <>
       <ButtonGroup aria-label="Basic example">
-        <Button variant="outline-primary" onClick={() => {}}>
+        <Button
+          variant="outline-primary"
+          onClick={() => {
+            if (Object.keys(targetData).length === 0) {
+              alert("수정할 목록을 선택해주세요");
+            } else {
+              handleChangeModalShow();
+            }
+          }}
+        >
           수정
         </Button>
         <Button
           variant="outline-primary"
           onClick={() => {
             setTargetData({});
+            handleNewModalShow();
           }}
         >
           신규
         </Button>
       </ButtonGroup>
+
+      <MenuAuthNewModal
+        show={newModalShow}
+        onHide={handleNewModalClose}
+      ></MenuAuthNewModal>
+
+      <MenuAuthUpdateModal
+        show={changeModalShow}
+        onHide={handleChangeModalClose}
+        targetData={targetData}
+      ></MenuAuthUpdateModal>
+
       <DataGrid
         width={600}
         height={500}
