@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState , useEffect} from "react";
 import Modal from "react-bootstrap/Modal";
 import InputGroup from "react-bootstrap/InputGroup";
 import Form from "react-bootstrap/Form";
@@ -8,11 +8,11 @@ import { API_URL } from "../utils/api";
 
 function MenuAuthNewModal(props) {
   const [formData, setFormData] = useState({
-    menuIndexNo: "1",
+    menuIndexNo: "",
     gradeIndexNo: "",
     searchAuthority: "",
     saveAuthority: "",
-    excelAuthoirty: "",
+    excelAuthority: "",
     deleteAuthority: "",
     fn1Authority: "",
     fn2Authority: "",
@@ -20,7 +20,9 @@ function MenuAuthNewModal(props) {
     fn4Authority: "",
     fn5Authority: "",
   });
-
+  useEffect(()=>{
+    setFormData({...formData,menuIndexNo:props.menuIndexNo})
+  },[props.menuIndexNo])
   return (
     <Modal
       show={props.show}
@@ -183,7 +185,7 @@ function MenuAuthNewModal(props) {
               .post(API_URL + "/menuGrade", sendData, {
                 headers: { "content-type": "multipart/form-data" },
               })
-              .then((result) => {})
+              .then((result) => {props.onHide()})
               .catch((err) => {});
           }}
         >

@@ -120,6 +120,7 @@ function MenuAuthGrid(props) {
       <MenuAuthNewModal
         show={newModalShow}
         onHide={handleNewModalClose}
+        menuIndexNo = {props.menuIndexNo}
       ></MenuAuthNewModal>
 
       <MenuAuthUpdateModal
@@ -127,6 +128,7 @@ function MenuAuthGrid(props) {
         onHide={handleChangeModalClose}
         targetData={targetData}
         setTargetData={setTargetData}
+        menuIndexNo = {props.menuIndexNo}
       ></MenuAuthUpdateModal>
 
       <DataGrid

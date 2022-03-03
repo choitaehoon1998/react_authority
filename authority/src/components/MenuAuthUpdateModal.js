@@ -173,7 +173,7 @@ function MenuAuthUpdateModal(props) {
           onClick={() => {
             axios
               .put(API_URL + "/menuGrade", props.targetData)
-              .then((result) => {})
+              .then((result) => {props.onHide()})
               .catch((e) => {});
           }}
         >
