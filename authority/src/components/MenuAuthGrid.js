@@ -31,7 +31,7 @@ function MenuAuthGrid(props) {
   }, [props.menuIndexNo]);
 
   const columns = [
-    { key: "indexNo", width: 100, label: "권한그룹명", align: "center" },
+    { key: "gradeIndexNo", width: 100, label: "권한그룹명", align: "center" },
     {
       key: "searchAuthority",
       width: 150,
@@ -126,6 +126,7 @@ function MenuAuthGrid(props) {
         show={changeModalShow}
         onHide={handleChangeModalClose}
         targetData={targetData}
+        setTargetData={setTargetData}
       ></MenuAuthUpdateModal>
 
       <DataGrid

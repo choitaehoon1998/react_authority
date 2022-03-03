@@ -9,7 +9,7 @@ import { API_URL } from "../utils/api";
 function MenuAuthNewModal(props) {
   const [formData, setFormData] = useState({
     menuIndexNo: "1",
-    gradeIndexNo: "3",
+    gradeIndexNo: "",
     searchAuthority: "",
     saveAuthority: "",
     excelAuthoirty: "",
@@ -34,6 +34,21 @@ function MenuAuthNewModal(props) {
       </Modal.Header>
       <Modal.Body>
         <InputGroup>
+          <InputGroup.Text id="basic-addon1">
+            {"권한 그룹 인덱스 번호"}
+          </InputGroup.Text>
+          <Form.Control
+            type="text"
+            value={formData.gradeIndexNo}
+            aria-label="Username"
+            aria-describedby="basic-addon1"
+            style={{ border: "1px solid #e7e1e1", marginRight: "10px" }}
+            onChange={(e) => {
+              setFormData({ ...formData, gradeIndexNo: e.target.value });
+            }}
+          />
+        </InputGroup>
+        <InputGroup>
           <InputGroup.Text id="basic-addon1">{"검색권한"}</InputGroup.Text>
           <Form.Control
             type="text"
@@ -43,7 +58,6 @@ function MenuAuthNewModal(props) {
             style={{ border: "1px solid #e7e1e1", marginRight: "10px" }}
             onChange={(e) => {
               setFormData({ ...formData, searchAuthority: e.target.value });
-              console.log(formData);
             }}
           />
         </InputGroup>
@@ -169,12 +183,8 @@ function MenuAuthNewModal(props) {
               .post(API_URL + "/menuGrade", sendData, {
                 headers: { "content-type": "multipart/form-data" },
               })
-              .then((result) => {
-                console.log(result);
-              })
-              .catch((err) => {
-                console.log(err);
-              });
+              .then((result) => {})
+              .catch((err) => {});
           }}
         >
           신규 저장
